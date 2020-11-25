@@ -1,0 +1,29 @@
+﻿<Window x:Class="MafTabProblem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MafTabProblem"
+        xmlns:dlg="clr-namespace:MafTabProblem.Mvvm.Dialogs"
+        xmlns:c="clr-namespace:SharedControls;assembly=SharedControls"
+        mc:Ignorable="d"
+        Title="MAF Tab Problem" SizeToContent="WidthAndHeight">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <StackPanel Margin="3">
+        <Label Content="Non-plugin example"/>
+        <c:ExampleControl HorizontalAlignment="Left"/>
+
+        <TextBlock>
+            <Run>Plugin state:</Run>
+            <Run Text="{Binding PluginState}" />
+        </TextBlock>
+
+        <StackPanel Orientation="Horizontal" Margin="0 3" IsEnabled="{Binding PluginsLoaded}">
+            <CheckBox Content="Load in current AppDomain" IsChecked="{Binding LoadInAppDomain}" Margin="0 0 3 0" VerticalAlignment="Center" />
+
+            <Button Content="Launch plugin" Command="{Binding OpenPluginCommand}" Margin="3 0 3 0" Padding="5 3" />
+        </StackPanel>
+    </StackPanel>
+</Window>
